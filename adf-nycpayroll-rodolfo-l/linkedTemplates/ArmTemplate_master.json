@@ -1,0 +1,132 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-nycpayroll-rodolfo-l"
+		},
+		"ls_AdlsGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_AdlsGen2'"
+		},
+		"ls_SqlDatabase_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_SqlDatabase'"
+		},
+		"ls_Synapse_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_Synapse'"
+		},
+		"ls_AdlsGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsnycpayrollrodolfol.dfs.core.windows.net/"
+		},
+		"ls_SqlDatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlserver-nycpayroll-rodolfo-l.database.windows.net"
+		},
+		"ls_SqlDatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db_nycpayroll"
+		},
+		"ls_SqlDatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"ls_Synapse_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "synapse-nycpayroll-rodolfo-l-ondemand.sql.azuresynapse.net"
+		},
+		"ls_Synapse_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "udacity"
+		},
+		"ls_Synapse_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-nycpayroll-rodolfo-l_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_AdlsGen2_accountKey": {
+						"value": "[parameters('ls_AdlsGen2_accountKey')]"
+					},
+					"ls_SqlDatabase_password": {
+						"value": "[parameters('ls_SqlDatabase_password')]"
+					},
+					"ls_Synapse_password": {
+						"value": "[parameters('ls_Synapse_password')]"
+					},
+					"ls_AdlsGen2_properties_typeProperties_url": {
+						"value": "[parameters('ls_AdlsGen2_properties_typeProperties_url')]"
+					},
+					"ls_SqlDatabase_properties_typeProperties_server": {
+						"value": "[parameters('ls_SqlDatabase_properties_typeProperties_server')]"
+					},
+					"ls_SqlDatabase_properties_typeProperties_database": {
+						"value": "[parameters('ls_SqlDatabase_properties_typeProperties_database')]"
+					},
+					"ls_SqlDatabase_properties_typeProperties_userName": {
+						"value": "[parameters('ls_SqlDatabase_properties_typeProperties_userName')]"
+					},
+					"ls_Synapse_properties_typeProperties_server": {
+						"value": "[parameters('ls_Synapse_properties_typeProperties_server')]"
+					},
+					"ls_Synapse_properties_typeProperties_database": {
+						"value": "[parameters('ls_Synapse_properties_typeProperties_database')]"
+					},
+					"ls_Synapse_properties_typeProperties_userName": {
+						"value": "[parameters('ls_Synapse_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-nycpayroll-rodolfo-l_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-nycpayroll-rodolfo-l_ArmTemplate_0')]"
+			]
+		}
+	]
+}

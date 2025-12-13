@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-nycpayroll-rodolfo-l"
+		},
+		"ls_AdlsGen2_accountKey": {
+			"value": ""
+		},
+		"ls_SqlDatabase_password": {
+			"value": ""
+		},
+		"ls_Synapse_password": {
+			"value": ""
+		},
+		"ls_AdlsGen2_properties_typeProperties_url": {
+			"value": "https://adlsnycpayrollrodolfol.dfs.core.windows.net/"
+		},
+		"ls_SqlDatabase_properties_typeProperties_server": {
+			"value": "sqlserver-nycpayroll-rodolfo-l.database.windows.net"
+		},
+		"ls_SqlDatabase_properties_typeProperties_database": {
+			"value": "db_nycpayroll"
+		},
+		"ls_SqlDatabase_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"ls_Synapse_properties_typeProperties_server": {
+			"value": "synapse-nycpayroll-rodolfo-l-ondemand.sql.azuresynapse.net"
+		},
+		"ls_Synapse_properties_typeProperties_database": {
+			"value": "udacity"
+		},
+		"ls_Synapse_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		}
+	}
+}
